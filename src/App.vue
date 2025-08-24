@@ -3,7 +3,7 @@
 import { ref, onMounted, computed, onUnmounted } from "vue";
 import Folder from "@/components/Folder.vue";
 
-const AXIOM_FOLDER_NAME: string = "AXIOM";
+const AXIOM_FOLDER_NAME: string = "常用內容";
 
 interface BookmarkOrFolder extends chrome.bookmarks.BookmarkTreeNode {
     children: chrome.bookmarks.BookmarkTreeNode[];
