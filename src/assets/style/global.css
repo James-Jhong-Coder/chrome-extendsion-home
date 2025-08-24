@@ -1,0 +1,10 @@
+@import "tailwindcss";
+html,
+body {
+    @apply w-full h-full;
+    background: #1e1e1e;
+}
+
+@theme {
+    --color-gray-100: #e0e0e0;
+}
