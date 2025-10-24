@@ -25,9 +25,6 @@ const getFaviconUrl = (url: string) =>
       <template v-for="(item, index) in folder.children" :key="index">
         <div
           class="box-list-item"
-          :class="{
-            'mt-2': index > 0,
-          }"
         >
           <img
             v-if="item.url"
@@ -39,7 +36,7 @@ const getFaviconUrl = (url: string) =>
             item.title
           }}</span>
         </div>
-        <span class="box-list-item-divider mt-1.5"></span>
+        <span class="box-list-item-divider"></span>
       </template>
     </div>
   </div>
@@ -65,8 +62,8 @@ const getFaviconUrl = (url: string) =>
 }
 
 .box-list-item {
-  @apply cursor-pointer px-3 text-base;
-  @apply flex items-center hover:underline;
+  @apply cursor-pointer p-3 text-base rounded-xl;
+  @apply flex items-center hover:bg-gray-240;
 }
 
 .book-list-item-img {
@@ -75,6 +72,6 @@ const getFaviconUrl = (url: string) =>
 
 .box-list-item-divider {
   /* border: 1px solid #eee; */
-  @apply bg-gray-150;
+  @apply bg-gray-240 h-px my-2;
 }
 </style>
