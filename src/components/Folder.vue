@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import SvgIcon from "./common/SvgIcon.vue";
+
 interface TProps {
   folder: chrome.bookmarks.BookmarkTreeNode;
 }
@@ -15,8 +17,11 @@ const getFaviconUrl = (url: string) =>
 </script>
 <template>
   <div class="box">
-    <span class="box-title">{{ folder.title }}</span>
-    <div class="box-list mt-3">
+    <div class="box-title">
+      <SvgIcon name="icon_folder" class="w-4 h-4" />
+      <span class="ml-3">{{ folder.title }}</span>
+    </div>
+    <div class="box-list mt-4">
       <template v-for="(item, index) in folder.children" :key="index">
         <div
           class="box-list-item"
@@ -46,12 +51,13 @@ const getFaviconUrl = (url: string) =>
 .box {
   @apply bg-gray-600;
   @apply rounded-xl text-left p-5;
-  @apply text-gray-50;
+  @apply text-gray-50 border border-gray-210;
   @apply shadow-2xl;
 }
 
 .box-title {
   @apply text-gray-50 text-2xl px-3;
+  @apply flex items-center;
 }
 
 .box-list {
