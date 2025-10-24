@@ -1,73 +1,77 @@
 <script setup lang="ts">
+import SvgIcon from "./common/SvgIcon.vue";
+
 interface TProps {
-    folder: chrome.bookmarks.BookmarkTreeNode;
+  folder: chrome.bookmarks.BookmarkTreeNode;
 }
 defineProps<TProps>();
 
 const onLinkClickHandler = (url: string) => {
-    window.open(url, "_blank");
+  window.open(url, "_blank");
 };
 
 const getFaviconUrl = (url: string) =>
-    `https://www.google.com/s2/favicons?sz=32&domain_url=${encodeURIComponent(
-        url
-    )}`;
+  `https://www.google.com/s2/favicons?sz=32&domain_url=${encodeURIComponent(
+    url
+  )}`;
 </script>
 <template>
-    <div class="box">
-        <span class="box-title">{{ folder.title }}</span>
-        <div class="box-list mt-3">
-            <template v-for="(item, index) in folder.children" :key="index">
-                <div
-                    class="box-list-item"
-                    :class="{
-                        'mt-2': index > 0,
-                    }"
-                >
-                    <img
-                        v-if="item.url"
-                        class="book-list-item-img"
-                        :src="getFaviconUrl(item.url)"
-                        alt="favicon"
-                    />
-                    <span
-                        class="ml-1"
-                        @click="onLinkClickHandler(item.url || '')"
-                        >{{ item.title }}</span
-                    >
-                </div>
-                <span class="box-list-item-divider mt-1.5"></span>
-            </template>
-        </div>
+  <div class="box">
+    <div class="box-title">
+      <SvgIcon name="icon_folder" class="w-4 h-4" />
+      <span class="ml-3">{{ folder.title }}</span>
     </div>
+    <div class="box-list mt-4">
+      <template v-for="(item, index) in folder.children" :key="index">
+        <div
+          class="box-list-item"
+        >
+          <img
+            v-if="item.url"
+            class="book-list-item-img"
+            :src="getFaviconUrl(item.url)"
+            alt="favicon"
+          />
+          <span class="ml-3" @click="onLinkClickHandler(item.url || '')">{{
+            item.title
+          }}</span>
+        </div>
+        <span class="box-list-item-divider"></span>
+      </template>
+    </div>
+  </div>
 </template>
 
 <style scoped>
 @reference "@/assets/style/global.css";
 
 .box {
-    @apply bg-white;
-    @apply rounded-md text-left py-3;
+  @apply bg-gray-600;
+  @apply rounded-xl text-left p-5;
+  @apply text-gray-50 border border-gray-210;
+  @apply shadow-2xl;
 }
 
 .box-title {
-    @apply text-black text-xl px-3;
+  @apply text-gray-50 text-2xl px-3;
+  @apply flex items-center;
 }
 
 .box-list {
-    @apply flex flex-col;
+  @apply flex flex-col;
 }
 
 .box-list-item {
-    @apply cursor-pointer px-3 text-base;
-    @apply flex items-center hover:underline;
+  @apply cursor-pointer p-3 text-base rounded-xl;
+  @apply flex items-center hover:bg-gray-240;
 }
 
 .book-list-item-img {
-    @apply w-4 h-4;
+  @apply w-4 h-4;
 }
 
 .box-list-item-divider {
-    border: 1px solid #eee;
+  /* border: 1px solid #eee; */
+  @apply bg-gray-240 h-px my-2;
 }
 </style>
