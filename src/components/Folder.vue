@@ -23,18 +23,14 @@ const getFaviconUrl = (url: string) =>
     </div>
     <div class="box-list mt-4">
       <template v-for="(item, index) in folder.children" :key="index">
-        <div
-          class="box-list-item"
-        >
+        <div class="box-list-item" @click="onLinkClickHandler(item.url || '')">
           <img
             v-if="item.url"
             class="book-list-item-img"
             :src="getFaviconUrl(item.url)"
             alt="favicon"
           />
-          <span class="ml-3" @click="onLinkClickHandler(item.url || '')">{{
-            item.title
-          }}</span>
+          <span class="ml-3">{{ item.title }}</span>
         </div>
         <span class="box-list-item-divider"></span>
       </template>
